@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Runway Revamp</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.17.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="app-container">
+      <aside id="control-panel">
+        <header>
+          <h1>Runway Revamp</h1>
+        </header>
+
+        <section class="input-section">
+          <h2>1. Provide Design Sketch</h2>
+          <div class="input-choice">
+            <label for="sketch-upload-input" class="file-label">Upload Your Sketch</label>
+            <input type="file" id="sketch-upload-input" accept="image/*" />
+            <img id="sketch-preview" class="preview-image" alt="Sketch preview" aria-hidden="true" />
+          </div>
+          <div class="or-divider">OR</div>
+          <div class="input-choice">
+             <p>Draw Your Design</p>
+            <canvas id="sketch-canvas" width="250" height="250"></canvas>
+            <button id="clear-canvas" class="secondary-button">Clear</button>
+          </div>
+        </section>
+
+        <section class="input-section">
+            <h2>2. Provide Model</h2>
+            <label for="model-upload-input" class="file-label">Upload Model Photo</label>
+            <input type="file" id="model-upload-input" accept="image/*" />
+            <img id="model-preview" class="preview-image" alt="Model preview" aria-hidden="true" />
+            <div class="or-divider">OR</div>
+            <label for="model-type">Select Model Type</label>
+            <select id="model-type">
+              <option>Female</option>
+              <option>Male</option>
+              <option>Athletic</option>
+              <option>Petite</option>
+              <option>Plus-size</option>
+            </select>
+        </section>
+
+        <section class="input-section">
+          <h2>3. Describe & Refine</h2>
+          <label for="design-description">Describe the design...</label>
+          <textarea id="design-description" rows="4" placeholder="e.g., silk fabric, shimmering gold details, haute couture style, inspired by art deco, dramatic studio lighting."></textarea>
+          
+          <label for="realism-slider">Realism: <span id="realism-value">100%</span></label>
+          <input type="range" id="realism-slider" min="0" max="100" value="100" />
+        </section>
+        
+        <button id="generate-btn">Generate</button>
+      </aside>
+
+      <main id="display-panel">
+        <div id="placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+          <p>Your masterpiece awaits...</p>
+        </div>
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Revamping your runway vision... this can take a moment.</p>
+        </div>
+        <img id="result-image" alt="Generated runway design" class="hidden"/>
+      </main>
+    </div>
+    <script type="module" src="index.tsx"></script>
+  </body>
+</html>
